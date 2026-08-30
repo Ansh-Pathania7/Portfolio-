@@ -286,23 +286,15 @@ function refreshDesktop() {
 }
 
 /**
- * Open resume in new tab (placeholder)
+ * Open resume PDF in a new tab
  */
 function openResume() {
-  const resumeUrl = '#';
-  if (resumeUrl === '#') {
-    if (state.openWindows.has('terminal')) {
-      termPrint('error', 'cat: Resume.pdf: No URL configured yet');
-      termPrintPrompt();
-    } else {
-      openWindow('terminal');
-      setTimeout(() => {
-        termPrint('error', 'cat: Resume.pdf: No URL configured yet');
-        termPrintPrompt();
-      }, 400);
-    }
-  } else {
-    window.open(resumeUrl, '_blank', 'noopener');
+  const resumeUrl = './personalCV.pdf';
+
+  try {
+    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+  } catch (error) {
+    window.location.href = resumeUrl;
   }
 }
 
