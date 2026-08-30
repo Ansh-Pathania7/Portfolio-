@@ -51,20 +51,20 @@ let cascadeOffset = 0; // increment per new window open
    A. BOOT SEQUENCE
 ============================================================ */
 const bootLines = [
-  'BIOS version 2.35 — KaliOS kernel 6.1.0-kali5',
+  'BIOS version 3.0 — AnshOS kernel 6.5.0',
   'Loading hardware modules...',
   '[  OK  ] Started Journal Service.',
   '[  OK  ] Started Network Manager.',
   '[  OK  ] Reached target Graphical Interface.',
   '',
-  '  ██╗  ██╗ █████╗ ██╗     ██╗',
-  '  ██║ ██╔╝██╔══██╗██║     ██║',
-  '  █████╔╝ ███████║██║     ██║',
-  '  ██╔═██╗ ██╔══██║██║     ██║',
-  '  ██║  ██╗██║  ██║███████╗██║',
-  '  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝',
+  '   █████╗  ███╗   ██╗███████╗██╗  ██╗',
+  '  ██╔══██╗ ████╗  ██║██╔════╝██║  ██║',
+  '  ███████║ ██╔██╗ ██║███████╗███████║',
+  '  ██╔══██║ ██║╚██╗██║╚════██║██╔══██║',
+  '  ██║  ██║ ██║ ╚████║███████║██║  ██║',
+  '  ╚═╝  ╚═╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝',
   '',
-  'Welcome to Ansh@kali',
+  'Welcome to Ansh Pathania\'s Portfolio',
   'Booting desktop environment...',
 ];
 
@@ -79,22 +79,19 @@ function runBoot() {
   let totalDuration = 0;
 
   bootLines.forEach((line, i) => {
-    const delay = i * 120 + Math.random() * 40;
+    const delay = i * 70 + Math.random() * 20;
     totalDuration = delay;
     setTimeout(() => {
       bootPre.textContent += line + '\n';
-      // Animate progress bar
       const pct = Math.round(((i + 1) / bootLines.length) * 100);
       bootProgress.style.width = pct + '%';
     }, delay);
   });
 
-  // Hide boot screen after all lines printed + small pause
+  // Hide boot screen after all lines printed
   setTimeout(() => {
     bootScreen.classList.add('hidden');
-    // Open terminal after boot
-    setTimeout(() => openWindow('terminal'), 400);
-  }, totalDuration + 700);
+  }, totalDuration + 400);
 }
 
 
@@ -292,18 +289,15 @@ function refreshDesktop() {
  * Open resume in new tab (placeholder)
  */
 function openResume() {
-  // CHANGE: your resume PDF link — replace '#' with your actual resume URL
-  const resumeUrl = '#'; // e.g. 'https://drive.google.com/file/d/YOUR_ID/view'
+  const resumeUrl = '#';
   if (resumeUrl === '#') {
-    // Show a message in terminal if open, else alert
     if (state.openWindows.has('terminal')) {
-      termPrint('error', 'cat: Resume.pdf: No URL configured');
-      termPrint('comment', '# CHANGE: Add your resume URL in script.js → openResume()');
+      termPrint('error', 'cat: Resume.pdf: No URL configured yet');
       termPrintPrompt();
     } else {
       openWindow('terminal');
       setTimeout(() => {
-        termPrint('error', 'cat: Resume.pdf: No URL configured — see CHANGE comment in script.js');
+        termPrint('error', 'cat: Resume.pdf: No URL configured yet');
         termPrintPrompt();
       }, 400);
     }
@@ -417,7 +411,7 @@ function updateDock() {
   if (allVisible.size === 0) {
     const hint = document.createElement('span');
     hint.style.cssText = 'font-size:0.65rem;color:#484f58;padding:0 6px;';
-    hint.textContent = 'No open windows — double-click an icon';
+    hint.textContent = 'No open windows — click an icon to start';
     dockItems.appendChild(hint);
     return;
   }
@@ -479,14 +473,25 @@ function updateDock() {
 
 /** Scroll to bottom of terminal */
 function termScrollBottom() {
+  const output = document.getElementById('term-output');
   const body = document.getElementById('terminal-body');
-  if (body) body.scrollTop = body.scrollHeight;
+  const inputRow = document.getElementById('term-input-row');
+
+  if (output) {
+    output.scrollTop = output.scrollHeight;
+  }
+  if (body) {
+    body.scrollTop = body.scrollHeight;
+  }
+  if (inputRow) {
+    inputRow.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
 }
 
 /** Focus the terminal input */
 function focusTermInput() {
   const inp = document.getElementById('term-input');
-  if (inp) inp.focus();
+  if (inp) inp.focus({ preventScroll: true });
 }
 
 /** Print a line to terminal output */
@@ -533,8 +538,8 @@ function printWelcome() {
     ['comment', '# ─────────────────────────────────────────────'],
     ['comment', '# Welcome to Ansh Pathania\'s Portfolio Terminal'],
     ['comment', '# ─────────────────────────────────────────────'],
-    ['output',  'OS: KaliOS 2025 (Portfolio Edition)'],
-    ['output',  'User: ansh | Host: kali | Shell: bash 5.2'],
+    ['output',  'OS: AnshOS 2026 (Portfolio Edition)'],
+    ['output',  'User: ansh | Host: portfolio | Shell: bash 5.2'],
     ['blank',   ''],
     ['success', 'Type a command to get started.'],
     ['output',  'Available commands:'],
@@ -570,6 +575,7 @@ function processCommand(raw) {
     echo.innerHTML = `<span class="t-host">ansh@kali</span>:<span class="t-path">~</span>$ ${escapeHtml(trimmed)}`;
     output.appendChild(echo);
     output.appendChild(document.createElement('br'));
+    termScrollBottom();
   }
 
   const [cmd, ...args] = trimmed.toLowerCase().split(/\s+/);
@@ -606,7 +612,7 @@ function processCommand(raw) {
       termPrint('output',   '  Role       : Full Stack Developer');
       termPrint('output',   '  Degree     : B.Tech Computer Science & Engineering');
       termPrint('output',   '  University : Lovely Professional University, Phagwara');
-      termPrint('output',   '  Year       : 2nd Year (2023 – 2027)');
+      termPrint('output',   '  Year       : 3rd Year (2023 – 2027)');
       termPrint('output',   '  CGPA       : 7.61');
       termPrint('output',   '  Status     : Open to internships & opportunities');
       termBlank();
@@ -653,8 +659,8 @@ function processCommand(raw) {
       termPrint('output',   '  Phone    : +91-9915569889');
       termPrint('output',   '  GitHub   : github.com/Ansh-Pathania7');
       termPrint('output',   '  LinkedIn : linkedin.com/in/ansh-pathania-9683053bb');
-      termPrint('comment',  '  # CHANGE: Replace email below with your real email');
-      termPrint('output',   '  Email    : anshpathania@example.com');
+      termPrint('comment',  '  # Email below');
+      termPrint('output',   '  Email    : anshpathania7@gmail.com');
       termPrint('output',   '  Location : Phagwara, Punjab, India');
       termBlank();
       break;
@@ -787,7 +793,6 @@ function handleCat(args) {
     return;
   } else if (file.includes('resume') || file.includes('.pdf')) {
     termPrint('error', 'cat: Resume.pdf: Binary file — use "open resume"');
-    termPrint('comment', '# CHANGE: add your resume PDF link in openResume()');
   } else {
     termPrint('error', `cat: ${escapeHtml(args.join(' '))}: No such file or directory`);
   }
@@ -858,6 +863,10 @@ function simulateHack() {
 function initTerminal() {
   const input = document.getElementById('term-input');
   if (!input) return;
+
+  input.addEventListener('input', () => {
+    termScrollBottom();
+  });
 
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -963,6 +972,25 @@ function hideContextMenu() {
   document.getElementById('ctx-menu')?.classList.remove('visible');
 }
 
+function toggleKaliMenu() {
+  const dd = document.getElementById('kali-dropdown');
+  if (!dd) return;
+  dd.classList.toggle('visible');
+
+  // Close on outside click
+  if (dd.classList.contains('visible')) {
+    setTimeout(() => {
+      const closer = (e) => {
+        if (!e.target.closest('.kali-dropdown') && !e.target.closest('.kali-menu-btn')) {
+          dd.classList.remove('visible');
+          document.removeEventListener('click', closer);
+        }
+      };
+      document.addEventListener('click', closer);
+    }, 10);
+  }
+}
+
 
 /* ============================================================
    H. CONTACT FORM
@@ -995,7 +1023,6 @@ function initContactForm() {
     }
 
     // Simulate sending
-    // CHANGE: Replace with your actual form backend (Formspree, EmailJS, etc.)
     submitBtn.disabled = true;
     showCFMFeedback('ok', '▶ Sending...');
 

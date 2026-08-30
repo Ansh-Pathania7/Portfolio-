@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +9,11 @@
   <!-- Fira Code: monospace font for that hacker terminal feel -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- =====================================================
@@ -20,15 +23,28 @@
 
     <!-- Left: App Menu Button -->
     <div class="top-bar-left">
-      <button class="kali-menu-btn" id="kali-menu-btn" aria-label="Open menu" aria-expanded="false">
+      <button class="kali-menu-btn" id="kali-menu-btn" aria-label="Open menu" aria-expanded="false"
+        onclick="toggleKaliMenu()">
         <span class="kali-dragon">&#x25C6;</span>
-        <span class="kali-label">kali</span>
+        <span class="kali-label">ansh_os</span>
       </button>
+      <div class="kali-dropdown" id="kali-dropdown">
+        <div class="kd-item" onclick="openWindow('about')">📄 About Me</div>
+        <div class="kd-item" onclick="openWindow('skills')">⚙️ Skills</div>
+        <div class="kd-item" onclick="openWindow('projects')">📁 Projects</div>
+        <div class="kd-item" onclick="openWindow('certificates')">📜 Certificates</div>
+        <div class="kd-item" onclick="openWindow('achievements')">🏆 Achievements</div>
+        <div class="kd-item" onclick="openWindow('contact')">📡 Contact</div>
+        <div class="kd-divider"></div>
+        <div class="kd-item" onclick="openWindow('terminal')">▶ Terminal</div>
+      </div>
 
       <!-- Quick launch icons (decorative / open windows) -->
       <div class="top-bar-launchers" aria-label="Quick launchers">
-        <button class="launcher-icon" title="Terminal" onclick="openWindow('terminal')" aria-label="Open Terminal">&#x25A0;</button>
-        <button class="launcher-icon" title="Files" onclick="openWindow('projects')" aria-label="Open Files">&#x25A1;</button>
+        <button class="launcher-icon" title="Terminal" onclick="openWindow('terminal')"
+          aria-label="Open Terminal">&#x25A0;</button>
+        <button class="launcher-icon" title="Files" onclick="openWindow('projects')"
+          aria-label="Open Files">&#x25A1;</button>
       </div>
     </div>
 
@@ -41,13 +57,25 @@
     <div class="top-bar-right" role="complementary" aria-label="System tray">
       <!-- Decorative system icons -->
       <span class="tray-icon" title="Network" aria-hidden="true">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01" />
+        </svg>
       </span>
       <span class="tray-icon" title="Volume" aria-hidden="true">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        </svg>
       </span>
       <span class="tray-icon" title="Battery" aria-hidden="true">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/><line x1="5" y1="10" x2="5" y2="14"/><line x1="9" y1="10" x2="9" y2="14"/><line x1="13" y1="10" x2="13" y2="14"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="6" width="18" height="12" rx="2" />
+          <line x1="23" y1="13" x2="23" y2="11" />
+          <line x1="5" y1="10" x2="5" y2="14" />
+          <line x1="9" y1="10" x2="9" y2="14" />
+          <line x1="13" y1="10" x2="13" y2="14" />
+        </svg>
       </span>
       <!-- Live clock updated by JS -->
       <div class="tray-clock">
@@ -80,11 +108,8 @@
     <div class="desktop-icons" id="desktop-icons" role="list" aria-label="Desktop icons">
 
       <!-- About_Me.txt -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="about" title="Double-click to open"
-           aria-label="About_Me.txt — open About window"
-           ondblclick="openWindow('about')"
-           onkeydown="if(event.key==='Enter') openWindow('about')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="about" title="Click to open"
+        onclick="openWindow('about')" onkeydown="if(event.key==='Enter') openWindow('about')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-file-txt">
             <span class="icon-lines"></span>
@@ -94,11 +119,8 @@
       </div>
 
       <!-- Skills.app -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="skills" title="Double-click to open"
-           aria-label="Skills.app — open Skills window"
-           ondblclick="openWindow('skills')"
-           onkeydown="if(event.key==='Enter') openWindow('skills')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="skills" title="Click to open"
+        onclick="openWindow('skills')" onkeydown="if(event.key==='Enter') openWindow('skills')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-app">
             <span class="icon-gear">&#x2699;</span>
@@ -108,11 +130,8 @@
       </div>
 
       <!-- Projects Folder -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="projects" title="Double-click to open"
-           aria-label="Projects folder — open Projects window"
-           ondblclick="openWindow('projects')"
-           onkeydown="if(event.key==='Enter') openWindow('projects')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="projects" title="Click to open"
+        onclick="openWindow('projects')" onkeydown="if(event.key==='Enter') openWindow('projects')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-folder">
             <span class="icon-folder-tab"></span>
@@ -122,11 +141,8 @@
       </div>
 
       <!-- Certificates.pdf -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="certificates" title="Double-click to open"
-           aria-label="Certificates.pdf — open Certificates window"
-           ondblclick="openWindow('certificates')"
-           onkeydown="if(event.key==='Enter') openWindow('certificates')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="certificates" title="Click to open"
+        onclick="openWindow('certificates')" onkeydown="if(event.key==='Enter') openWindow('certificates')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-file-pdf">PDF</span>
         </div>
@@ -134,11 +150,8 @@
       </div>
 
       <!-- Achievements.log -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="achievements" title="Double-click to open"
-           aria-label="Achievements.log — open Achievements window"
-           ondblclick="openWindow('achievements')"
-           onkeydown="if(event.key==='Enter') openWindow('achievements')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="achievements" title="Click to open"
+        onclick="openWindow('achievements')" onkeydown="if(event.key==='Enter') openWindow('achievements')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-file-log">LOG</span>
         </div>
@@ -146,11 +159,8 @@
       </div>
 
       <!-- Contact.sh -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="contact" title="Double-click to open"
-           aria-label="Contact.sh — open Contact window"
-           ondblclick="openWindow('contact')"
-           onkeydown="if(event.key==='Enter') openWindow('contact')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="contact" title="Click to open"
+        onclick="openWindow('contact')" onkeydown="if(event.key==='Enter') openWindow('contact')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-file-sh">SH</span>
         </div>
@@ -158,11 +168,8 @@
       </div>
 
       <!-- Resume.pdf -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           title="Double-click to open Resume"
-           aria-label="Resume.pdf"
-           ondblclick="openResume()"
-           onkeydown="if(event.key==='Enter') openResume()">
+      <div class="desktop-icon" role="listitem" tabindex="0" title="Click to open Resume" onclick="openResume()"
+        onkeydown="if(event.key==='Enter') openResume()">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-file-pdf" style="--pdf-color:#ff6b6b;">CV</span>
         </div>
@@ -170,11 +177,8 @@
       </div>
 
       <!-- Terminal.sh -->
-      <div class="desktop-icon" role="listitem" tabindex="0"
-           data-window="terminal" title="Double-click to open Terminal"
-           aria-label="Terminal — open terminal emulator"
-           ondblclick="openWindow('terminal')"
-           onkeydown="if(event.key==='Enter') openWindow('terminal')">
+      <div class="desktop-icon" role="listitem" tabindex="0" data-window="terminal" title="Click to open Terminal"
+        onclick="openWindow('terminal')" onkeydown="if(event.key==='Enter') openWindow('terminal')">
         <div class="icon-graphic" aria-hidden="true">
           <span class="icon-terminal">&#x25B6;_</span>
         </div>
@@ -182,6 +186,22 @@
       </div>
 
     </div><!-- /.desktop-icons -->
+
+    <!-- HERO WELCOME WIDGET -->
+    <div class="hero-widget" id="hero-widget">
+      <div class="hero-photo-wrap">
+        <img src="profile.png" alt="Ansh Pathania" class="hero-photo" />
+      </div>
+      <h1 class="hero-name">Ansh Pathania</h1>
+      <p class="hero-tagline">Full Stack Developer &bull; B.Tech CSE</p>
+      <div class="hero-actions">
+        <button class="hero-btn" onclick="openWindow('about')">📄 About</button>
+        <button class="hero-btn" onclick="openWindow('projects')">📁 Projects</button>
+        <button class="hero-btn" onclick="openWindow('skills')">⚙️ Skills</button>
+        <button class="hero-btn" onclick="openWindow('terminal')">▶ Terminal</button>
+      </div>
+      <p class="hero-hint">Click any desktop icon to explore</p>
+    </div>
 
 
     <!-- =====================================================
@@ -192,38 +212,38 @@
     <div class="os-window" id="win-about" role="dialog" aria-label="About_Me.txt" aria-modal="true">
       <div class="win-titlebar" data-win="about">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('about')"    aria-label="Close About window"   title="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('about')" aria-label="Minimize About window" title="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('about')"aria-label="Maximize About window" title="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('about')" aria-label="Close About window"
+            title="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('about')" aria-label="Minimize About window"
+            title="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('about')" aria-label="Maximize About window"
+            title="Maximize"></button>
         </div>
         <span class="win-title">~/About_Me.txt</span>
         <span class="win-spacer"></span>
       </div>
       <div class="win-body">
         <div class="file-viewer">
+          <div class="about-photo-box">
+            <img src="profile.png" alt="Ansh Pathania" class="about-photo" />
+          </div>
           <pre class="file-content"><span class="fc-comment">##################################################
 # About_Me.txt
-# Author: Ansh Pathania | Version: 2.0
+# Author: Ansh Pathania | Version: 3.0
 ##################################################</span>
 
 <span class="fc-key">NAME</span>        = <span class="fc-val">"Ansh Pathania"</span>
 <span class="fc-key">ROLE</span>        = <span class="fc-val">"Full Stack Developer"</span>
 <span class="fc-key">DEGREE</span>      = <span class="fc-val">"B.Tech Computer Science &amp; Engineering"</span>
 <span class="fc-key">UNIVERSITY</span>  = <span class="fc-val">"Lovely Professional University, Phagwara"</span>
-<span class="fc-key">YEAR</span>        = <span class="fc-val">"2nd Year (2023 - 2027)"</span>
+<span class="fc-key">YEAR</span>        = <span class="fc-val">"3rd Year (2023 - 2027)"</span>
 <span class="fc-key">CGPA</span>        = <span class="fc-val">7.61</span>
-
-<span class="fc-comment"># Profile Photo</span>
-<span class="fc-comment"><!--  CHANGE: add photo here  -->
-# Replace the block below with your image tag or update the
-# CSS variable --profile-photo: url('your-photo.jpg');</span>
-<span class="fc-key">PHOTO</span>       = <span class="fc-val">"[placeholder — see CHANGE comment]"</span>
 
 <span class="fc-comment"># Personal Bio</span>
 <span class="fc-key">BIO</span>         = <span class="fc-val">"""
   Passionate Full Stack Developer and problem solver.
   I love building clean, efficient digital experiences —
-  from ML-powered web apps to sleek UIs. When I'm not 
+  from ML-powered web apps to sleek UIs. When I'm not
   coding, I'm grinding LeetCode or exploring new tech.
 """</span>
 
@@ -231,14 +251,6 @@
 <span class="fc-key">LOCATION</span>    = <span class="fc-val">"Phagwara, Punjab, India"</span>
 <span class="fc-key">STATUS</span>      = <span class="fc-val">"Open to internships &amp; opportunities"</span>
 </pre>
-
-          <!-- CHANGE: add photo here — uncomment and update src below -->
-          <!--
-          <div class="about-photo-box">
-            <img src="your-photo.jpg" alt="Ansh Pathania profile photo" class="about-photo" />
-          </div>
-          -->
-
         </div>
       </div>
     </div><!-- /#win-about -->
@@ -248,9 +260,9 @@
     <div class="os-window" id="win-skills" role="dialog" aria-label="Skills.app" aria-modal="true">
       <div class="win-titlebar" data-win="skills">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('skills')"    aria-label="Close">       </button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('skills')" aria-label="Minimize">    </button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('skills')"aria-label="Maximize">    </button>
+          <button class="win-btn win-close" onclick="closeWindow('skills')" aria-label="Close"> </button>
+          <button class="win-btn win-min" onclick="minimizeWindow('skills')" aria-label="Minimize"> </button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('skills')" aria-label="Maximize"> </button>
         </div>
         <span class="win-title">~/Skills.app &mdash; Dashboard</span>
         <span class="win-spacer"></span>
@@ -262,17 +274,29 @@
             <div class="skill-cat-header"><span class="prompt">$</span> Languages</div>
             <div class="skill-bars">
               <div class="skill-row"><span class="sk-name">Python</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="85" style="--skill-color:#3b82f6;"></div></div>
-                <span class="sk-pct">85%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="85" style="--skill-color:#3b82f6;"></div>
+                </div>
+                <span class="sk-pct">85%</span>
+              </div>
               <div class="skill-row"><span class="sk-name">C</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="80" style="--skill-color:#8b5cf6;"></div></div>
-                <span class="sk-pct">80%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="80" style="--skill-color:#8b5cf6;"></div>
+                </div>
+                <span class="sk-pct">80%</span>
+              </div>
               <div class="skill-row"><span class="sk-name">C++</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="75" style="--skill-color:#8b5cf6;"></div></div>
-                <span class="sk-pct">75%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="75" style="--skill-color:#8b5cf6;"></div>
+                </div>
+                <span class="sk-pct">75%</span>
+              </div>
               <div class="skill-row"><span class="sk-name">JavaScript</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="78" style="--skill-color:#00ff9c;"></div></div>
-                <span class="sk-pct">78%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="78" style="--skill-color:#00ff9c;"></div>
+                </div>
+                <span class="sk-pct">78%</span>
+              </div>
             </div>
           </div>
 
@@ -280,11 +304,17 @@
             <div class="skill-cat-header"><span class="prompt">$</span> Web / Frontend</div>
             <div class="skill-bars">
               <div class="skill-row"><span class="sk-name">HTML</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="90" style="--skill-color:#e34c26;"></div></div>
-                <span class="sk-pct">90%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="90" style="--skill-color:#e34c26;"></div>
+                </div>
+                <span class="sk-pct">90%</span>
+              </div>
               <div class="skill-row"><span class="sk-name">CSS</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="85" style="--skill-color:#264de4;"></div></div>
-                <span class="sk-pct">85%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="85" style="--skill-color:#264de4;"></div>
+                </div>
+                <span class="sk-pct">85%</span>
+              </div>
             </div>
           </div>
 
@@ -292,11 +322,17 @@
             <div class="skill-cat-header"><span class="prompt">$</span> Databases</div>
             <div class="skill-bars">
               <div class="skill-row"><span class="sk-name">MySQL</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="75" style="--skill-color:#00aff0;"></div></div>
-                <span class="sk-pct">75%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="75" style="--skill-color:#00aff0;"></div>
+                </div>
+                <span class="sk-pct">75%</span>
+              </div>
               <div class="skill-row"><span class="sk-name">MongoDB</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="65" style="--skill-color:#4db33d;"></div></div>
-                <span class="sk-pct">65%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="65" style="--skill-color:#4db33d;"></div>
+                </div>
+                <span class="sk-pct">65%</span>
+              </div>
             </div>
           </div>
 
@@ -304,11 +340,17 @@
             <div class="skill-cat-header"><span class="prompt">$</span> Tools</div>
             <div class="skill-bars">
               <div class="skill-row"><span class="sk-name">Git / GitHub</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="80" style="--skill-color:#f05033;"></div></div>
-                <span class="sk-pct">80%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="80" style="--skill-color:#f05033;"></div>
+                </div>
+                <span class="sk-pct">80%</span>
+              </div>
               <div class="skill-row"><span class="sk-name">Figma</span>
-                <div class="sk-bar-track"><div class="sk-bar-fill" data-pct="70" style="--skill-color:#a259ff;"></div></div>
-                <span class="sk-pct">70%</span></div>
+                <div class="sk-bar-track">
+                  <div class="sk-bar-fill" data-pct="70" style="--skill-color:#a259ff;"></div>
+                </div>
+                <span class="sk-pct">70%</span>
+              </div>
             </div>
           </div>
 
@@ -321,9 +363,9 @@
     <div class="os-window" id="win-projects" role="dialog" aria-label="Projects Folder" aria-modal="true">
       <div class="win-titlebar" data-win="projects">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('projects')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('projects')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('projects')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('projects')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('projects')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('projects')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Projects/ &mdash; File Manager</span>
         <span class="win-spacer"></span>
@@ -337,30 +379,27 @@
         <!-- Project Sub-Icons -->
         <div class="project-file-grid">
 
-          <div class="project-file-icon" tabindex="0"
-               ondblclick="openWindow('proj-ai')"
-               onkeydown="if(event.key==='Enter') openWindow('proj-ai')"
-               aria-label="AI Student Performance Predictor — double-click to open">
+          <div class="project-file-icon" tabindex="0" ondblclick="openWindow('proj-ai')"
+            onkeydown="if(event.key==='Enter') openWindow('proj-ai')"
+            aria-label="AI Student Performance Predictor — double-click to open">
             <div class="pfi-graphic">
               <span class="icon-file-py">PY</span>
             </div>
             <span class="pfi-label">AI_Predictor.py</span>
           </div>
 
-          <div class="project-file-icon" tabindex="0"
-               ondblclick="openWindow('proj-expense')"
-               onkeydown="if(event.key==='Enter') openWindow('proj-expense')"
-               aria-label="Personal Expense Tracker — double-click to open">
+          <div class="project-file-icon" tabindex="0" ondblclick="openWindow('proj-expense')"
+            onkeydown="if(event.key==='Enter') openWindow('proj-expense')"
+            aria-label="Personal Expense Tracker — double-click to open">
             <div class="pfi-graphic">
               <span class="icon-file-js">JS</span>
             </div>
             <span class="pfi-label">ExpenseTracker.js</span>
           </div>
 
-          <div class="project-file-icon" tabindex="0"
-               ondblclick="openWindow('proj-attendance')"
-               onkeydown="if(event.key==='Enter') openWindow('proj-attendance')"
-               aria-label="College Attendance System — double-click to open">
+          <div class="project-file-icon" tabindex="0" ondblclick="openWindow('proj-attendance')"
+            onkeydown="if(event.key==='Enter') openWindow('proj-attendance')"
+            aria-label="College Attendance System — double-click to open">
             <div class="pfi-graphic">
               <span class="icon-file-py">PY</span>
             </div>
@@ -373,12 +412,13 @@
 
 
     <!-- ===== PROJECT DETAIL: AI Predictor ===== -->
-    <div class="os-window project-detail-win" id="win-proj-ai" role="dialog" aria-label="AI Student Performance Predictor" aria-modal="true">
+    <div class="os-window project-detail-win" id="win-proj-ai" role="dialog"
+      aria-label="AI Student Performance Predictor" aria-modal="true">
       <div class="win-titlebar" data-win="proj-ai">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('proj-ai')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('proj-ai')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('proj-ai')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('proj-ai')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('proj-ai')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('proj-ai')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Projects/AI_Predictor.py</span>
         <span class="win-spacer"></span>
@@ -392,15 +432,16 @@
               <div class="pd-status"><span class="status-dot"></span> Active</div>
             </div>
           </div>
-          <pre class="pd-meta"><span class="fc-comment"># Project Metadata</span>
+          <pre
+            class="pd-meta"><span class="fc-comment"># Project Metadata</span>
 <span class="fc-key">TYPE</span>    = <span class="fc-val">"Machine Learning Web App"</span>
 <span class="fc-key">STACK</span>   = <span class="fc-val">["Python", "scikit-learn", "Flask", "HTML/CSS", "Pandas"]</span>
 <span class="fc-key">STATUS</span>  = <span class="fc-val">"Active Development"</span>
-<span class="fc-key">GITHUB</span>  = <span class="fc-val">"<a href="#" class="term-link" target="_blank" rel="noopener"><!-- CHANGE: project link here — replace # with GitHub URL --></a>"</span></pre>
+<span class="fc-key">GITHUB</span>  = <span class="fc-val">"<a href="https://github.com/Ansh-Pathania7" class="term-link" target="_blank" rel="noopener">github.com/Ansh-Pathania7</a>"</span></pre>
           <div class="pd-desc">
             <p>A machine learning web application that predicts student academic performance
-            based on study habits, attendance patterns, and historical data. Provides
-            actionable insights to help educators identify at-risk students early.</p>
+              based on study habits, attendance patterns, and historical data. Provides
+              actionable insights to help educators identify at-risk students early.</p>
             <div class="pd-tags">
               <span class="p-tag">Python</span>
               <span class="p-tag">scikit-learn</span>
@@ -410,10 +451,8 @@
             </div>
           </div>
           <div class="pd-links">
-            <!-- CHANGE: project link here — update href to your GitHub repo -->
-            <a href="#" target="_blank" rel="noopener" class="pd-btn">&#x2B22; GitHub</a>
-            <!-- CHANGE: project link here — update href to live demo if available -->
-            <a href="#" target="_blank" rel="noopener" class="pd-btn pd-btn-alt">&#x25B6; Live Demo</a>
+            <a href="https://github.com/Ansh-Pathania7" target="_blank" rel="noopener" class="pd-btn">&#x2B22;
+              GitHub</a>
           </div>
         </div>
       </div>
@@ -421,12 +460,13 @@
 
 
     <!-- ===== PROJECT DETAIL: Expense Tracker ===== -->
-    <div class="os-window project-detail-win" id="win-proj-expense" role="dialog" aria-label="Personal Expense Tracker" aria-modal="true">
+    <div class="os-window project-detail-win" id="win-proj-expense" role="dialog" aria-label="Personal Expense Tracker"
+      aria-modal="true">
       <div class="win-titlebar" data-win="proj-expense">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('proj-expense')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('proj-expense')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('proj-expense')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('proj-expense')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('proj-expense')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('proj-expense')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Projects/ExpenseTracker.js</span>
         <span class="win-spacer"></span>
@@ -440,15 +480,16 @@
               <div class="pd-status"><span class="status-dot"></span> Completed</div>
             </div>
           </div>
-          <pre class="pd-meta"><span class="fc-comment"># Project Metadata</span>
+          <pre
+            class="pd-meta"><span class="fc-comment"># Project Metadata</span>
 <span class="fc-key">TYPE</span>    = <span class="fc-val">"Full Stack Web App"</span>
 <span class="fc-key">STACK</span>   = <span class="fc-val">["HTML", "CSS", "JavaScript", "Chart.js", "LocalStorage"]</span>
 <span class="fc-key">STATUS</span>  = <span class="fc-val">"Completed"</span>
-<span class="fc-key">GITHUB</span>  = <span class="fc-val">"<a href="#" class="term-link" target="_blank" rel="noopener"><!-- CHANGE: project link here --></a>"</span></pre>
+<span class="fc-key">GITHUB</span>  = <span class="fc-val">"<a href="https://github.com/Ansh-Pathania7" class="term-link" target="_blank" rel="noopener">github.com/Ansh-Pathania7</a>"</span></pre>
           <div class="pd-desc">
             <p>A responsive web app for tracking personal income and expenses with interactive
-            charts, category filters, monthly summaries, and persistent local storage — no
-            backend required.</p>
+              charts, category filters, monthly summaries, and persistent local storage — no
+              backend required.</p>
             <div class="pd-tags">
               <span class="p-tag">HTML</span>
               <span class="p-tag">CSS</span>
@@ -457,10 +498,8 @@
             </div>
           </div>
           <div class="pd-links">
-            <!-- CHANGE: project link here — update href to your GitHub repo -->
-            <a href="#" target="_blank" rel="noopener" class="pd-btn">&#x2B22; GitHub</a>
-            <!-- CHANGE: project link here — update href to live demo if available -->
-            <a href="#" target="_blank" rel="noopener" class="pd-btn pd-btn-alt">&#x25B6; Live Demo</a>
+            <a href="https://github.com/Ansh-Pathania7" target="_blank" rel="noopener" class="pd-btn">&#x2B22;
+              GitHub</a>
           </div>
         </div>
       </div>
@@ -468,12 +507,13 @@
 
 
     <!-- ===== PROJECT DETAIL: Attendance ===== -->
-    <div class="os-window project-detail-win" id="win-proj-attendance" role="dialog" aria-label="College Attendance Management System" aria-modal="true">
+    <div class="os-window project-detail-win" id="win-proj-attendance" role="dialog"
+      aria-label="College Attendance Management System" aria-modal="true">
       <div class="win-titlebar" data-win="proj-attendance">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('proj-attendance')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('proj-attendance')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('proj-attendance')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('proj-attendance')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('proj-attendance')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('proj-attendance')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Projects/Attendance.py</span>
         <span class="win-spacer"></span>
@@ -487,14 +527,15 @@
               <div class="pd-status"><span class="status-dot"></span> Completed</div>
             </div>
           </div>
-          <pre class="pd-meta"><span class="fc-comment"># Project Metadata</span>
+          <pre
+            class="pd-meta"><span class="fc-comment"># Project Metadata</span>
 <span class="fc-key">TYPE</span>    = <span class="fc-val">"Web Application"</span>
 <span class="fc-key">STACK</span>   = <span class="fc-val">["Python", "Flask", "MySQL", "HTML/CSS", "JavaScript"]</span>
 <span class="fc-key">STATUS</span>  = <span class="fc-val">"Completed"</span>
-<span class="fc-key">GITHUB</span>  = <span class="fc-val">"<a href="#" class="term-link" target="_blank" rel="noopener"><!-- CHANGE: project link here --></a>"</span></pre>
+<span class="fc-key">GITHUB</span>  = <span class="fc-val">"<a href="https://github.com/Ansh-Pathania7" class="term-link" target="_blank" rel="noopener">github.com/Ansh-Pathania7</a>"</span></pre>
           <div class="pd-desc">
             <p>A multi-role web system for colleges with admin and student dashboards, automated
-            shortage alerts, report exports, and attendance analytics. Built with Flask and MySQL.</p>
+              shortage alerts, report exports, and attendance analytics. Built with Flask and MySQL.</p>
             <div class="pd-tags">
               <span class="p-tag">Python</span>
               <span class="p-tag">Flask</span>
@@ -503,10 +544,8 @@
             </div>
           </div>
           <div class="pd-links">
-            <!-- CHANGE: project link here — update href to your GitHub repo -->
-            <a href="#" target="_blank" rel="noopener" class="pd-btn">&#x2B22; GitHub</a>
-            <!-- CHANGE: project link here — update href to live demo if available -->
-            <a href="#" target="_blank" rel="noopener" class="pd-btn pd-btn-alt">&#x25B6; Live Demo</a>
+            <a href="https://github.com/Ansh-Pathania7" target="_blank" rel="noopener" class="pd-btn">&#x2B22;
+              GitHub</a>
           </div>
         </div>
       </div>
@@ -517,9 +556,9 @@
     <div class="os-window" id="win-certificates" role="dialog" aria-label="Certificates.pdf" aria-modal="true">
       <div class="win-titlebar" data-win="certificates">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('certificates')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('certificates')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('certificates')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('certificates')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('certificates')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('certificates')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Certificates.pdf &mdash; Document Viewer</span>
         <span class="win-spacer"></span>
@@ -533,7 +572,8 @@
               <div class="cert-issuer">Lovely Professional University</div>
               <div class="cert-title">Design Thinking &amp; Figma</div>
               <div class="cert-sub">Summer Training Program &middot; 2025</div>
-              <div class="cert-tags"><span class="p-tag">Figma</span><span class="p-tag">UI/UX</span><span class="p-tag">Design Thinking</span></div>
+              <div class="cert-tags"><span class="p-tag">Figma</span><span class="p-tag">UI/UX</span><span
+                  class="p-tag">Design Thinking</span></div>
             </div>
           </div>
 
@@ -566,9 +606,9 @@
     <div class="os-window" id="win-achievements" role="dialog" aria-label="Achievements.log" aria-modal="true">
       <div class="win-titlebar" data-win="achievements">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('achievements')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('achievements')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('achievements')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('achievements')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('achievements')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('achievements')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Achievements.log &mdash; System Log</span>
         <span class="win-spacer"></span>
@@ -608,9 +648,9 @@
     <div class="os-window" id="win-contact" role="dialog" aria-label="Contact.sh" aria-modal="true">
       <div class="win-titlebar" data-win="contact">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('contact')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('contact')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('contact')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('contact')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('contact')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('contact')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">~/Contact.sh &mdash; Running...</span>
         <span class="win-spacer"></span>
@@ -628,8 +668,7 @@ echo <span class="fc-val">"============================================="</span>
 <span class="fc-key">PHONE</span>=<span class="fc-val">"+91-9915569889"</span>
 <span class="fc-key">GITHUB</span>=<span class="fc-val">"<a href="https://github.com/Ansh-Pathania7" target="_blank" rel="noopener" class="term-link">github.com/Ansh-Pathania7</a>"</span>
 <span class="fc-key">LINKEDIN</span>=<span class="fc-val">"<a href="https://linkedin.com/in/ansh-pathania-9683053bb" target="_blank" rel="noopener" class="term-link">linkedin.com/in/ansh-pathania-9683053bb</a>"</span>
-<span class="fc-comment"># CHANGE: Replace with your real email below</span>
-<span class="fc-key">EMAIL</span>=<span class="fc-val">"anshpathania@example.com"</span>
+<span class="fc-key">EMAIL</span>=<span class="fc-val">"anshpathania7@gmail.com"</span>
 <span class="fc-key">LOCATION</span>=<span class="fc-val">"Phagwara, Punjab, India"</span>
 
 echo <span class="fc-val">"Phone    : $PHONE"</span>
@@ -648,10 +687,11 @@ echo <span class="fc-val">"Location : $LOCATION"</span>
           </div>
           <div class="cfm-row">
             <label for="cfm-email">email:</label>
-            <input type="email" id="cfm-email" name="email" placeholder="your@email.com" required autocomplete="email" />
+            <input type="email" id="cfm-email" name="email" placeholder="your@email.com" required
+              autocomplete="email" />
           </div>
           <div class="cfm-row cfm-msg">
-            <label for="cfm-msg">msg:  </label>
+            <label for="cfm-msg">msg: </label>
             <textarea id="cfm-msg" name="message" placeholder="your message..." rows="3" required></textarea>
           </div>
           <button type="submit" class="cfm-submit" id="cfm-submit">
@@ -664,12 +704,13 @@ echo <span class="fc-val">"Location : $LOCATION"</span>
 
 
     <!-- ===== TERMINAL WINDOW ===== -->
-    <div class="os-window terminal-win" id="win-terminal" role="dialog" aria-label="Terminal Emulator" aria-modal="true">
+    <div class="os-window terminal-win" id="win-terminal" role="dialog" aria-label="Terminal Emulator"
+      aria-modal="true">
       <div class="win-titlebar" data-win="terminal">
         <div class="win-controls">
-          <button class="win-btn win-close"  onclick="closeWindow('terminal')"    aria-label="Close"></button>
-          <button class="win-btn win-min"    onclick="minimizeWindow('terminal')" aria-label="Minimize"></button>
-          <button class="win-btn win-max"    onclick="toggleMaxWindow('terminal')"aria-label="Maximize"></button>
+          <button class="win-btn win-close" onclick="closeWindow('terminal')" aria-label="Close"></button>
+          <button class="win-btn win-min" onclick="minimizeWindow('terminal')" aria-label="Minimize"></button>
+          <button class="win-btn win-max" onclick="toggleMaxWindow('terminal')" aria-label="Maximize"></button>
         </div>
         <span class="win-title">ansh@kali: ~/terminal — bash</span>
         <span class="win-spacer"></span>
@@ -678,9 +719,8 @@ echo <span class="fc-val">"Location : $LOCATION"</span>
         <div class="term-output" id="term-output" aria-live="polite" aria-label="Terminal output"></div>
         <div class="term-input-row" id="term-input-row">
           <span class="term-prompt" aria-hidden="true">ansh@kali:~$&nbsp;</span>
-          <input type="text" id="term-input" class="term-input"
-                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                 aria-label="Terminal input — type a command and press Enter" />
+          <input type="text" id="term-input" class="term-input" autocomplete="off" autocorrect="off"
+            autocapitalize="off" spellcheck="false" aria-label="Terminal input — type a command and press Enter" />
           <span class="term-cursor-blink" aria-hidden="true"></span>
         </div>
       </div>
@@ -724,4 +764,5 @@ echo <span class="fc-val">"Location : $LOCATION"</span>
 
   <script src="script.js"></script>
 </body>
+
 </html>
